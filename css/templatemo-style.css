@@ -38,7 +38,7 @@ section {
   font-size: 17px;
   display: block;
   margin: 0px;
-  color: #4883ff;
+  color: #ffcc00;
 }
 
 .section-heading h2 {
@@ -53,19 +53,19 @@ section {
 
 .blue-button a {
   display: inline-block;
-  background-color: #4883ff;
+  background-color: #ffcc00;
   color: #fff;
   font-size: 15px;
   font-weight: 500;
   padding: 10px 16px;
   text-decoration: none;
-  border: 2px solid #4883ff;
+  border: 2px solid #ffcc00;
   transition: all 0.5s;
 }
 
 .blue-button a:hover {
   background-color: transparent;
-  color: #4883ff;
+  color: #ffcc00;
 }
 
 
@@ -123,7 +123,7 @@ section {
   /* content: 'â˜°'; */
   content: '\2261';
   display: inline-block;
-  background-color: #4883ff;
+  background-color: #ffcc00;
   font-size: 36px;
   font-style: normal;
   font-weight: normal;
@@ -182,11 +182,11 @@ section {
 
 #primary-nav li > a:hover,
 #primary-nav li.selected > a {
-  color: #4883ff;
+  color: #ffcc00;
 }
 
 .sub-menu {
-  border-top: 3px solid #4883ff;
+  border-top: 3px solid #ffcc00;
 }
 
 .sub-menu li a {
@@ -328,7 +328,7 @@ section.banner {
 }
 
 .banner {
-  background-image: url(../img/main_banner.jpg);
+  background-image: url(../img/crane1.jpg);
   width: 100%;
   height: 100%;
   background-position: center;
@@ -343,7 +343,7 @@ section.banner {
 .banner .banner-caption .line-dec {
   width: 80px;
   height: 3px;
-  background-color: #4883ff;
+  background-color: #ffcc00;
 }
 
 .banner .banner-caption h2 {
@@ -351,7 +351,7 @@ section.banner {
   margin-bottom: 20px;
   font-size: 42px;
   letter-spacing: 0.5px;
-  color: #fff;
+  color: #000;
 }
 
 .banner .banner-caption span {
@@ -365,7 +365,7 @@ section.banner {
 }
 
 .banner .submit-form {
-  border-bottom: 5px solid #4883ff;
+  border-bottom: 5px solid #ffcc00;
   background-color: #fff;
   padding: 15px;
 }
@@ -423,18 +423,18 @@ section.banner {
   text-align: center;
   display: inline-block;
   border-radius: 0px;
-  background-color: #4883ff;
+  background-color: #ffcc00;
   font-size: 17px;
   letter-spacing: 0.5px;
   color: #fff;
   font-weight: 600;
-  border: 2px solid #4883ff;
+  border: 2px solid #ffcc00;
   transition: all 0.5s;
 }
 
 .submit-form button:hover {
   background-color: transparent;
-  color: #4883ff;
+  color: #ffcc00;
 }
 
 .popular-places .owl-nav {
@@ -456,7 +456,7 @@ section.banner {
 }
 
 .popular-places .owl-dots .active span {
-  background-color: #4883ff!important;
+  background-color: #ffcc00!important;
 }
 
 .popular-places .owl-dots button {
@@ -567,7 +567,7 @@ section.featured-places {
   display: inline-block;
   text-align: center;
   vertical-align: middle;
-  background-color: #4883ff;
+  background-color: #ffcc00;
   border-radius: 50%;
 }
 
@@ -606,7 +606,7 @@ section.featured-places {
 .featured-places .featured-item .down-content span {
   display: block;
   font-size: 13px;
-  color: #4883ff;
+  color: #ffcc00;
   margin-bottom: 15px;
 }
 
@@ -643,7 +643,7 @@ section.featured-places {
 }
 
 .featured-places .featured-item .down-content .text-button a:hover {
-  color: #4883ff;
+  color: #ffcc00;
 }
 
 
@@ -730,7 +730,7 @@ section.our-services .service-item h4 {
 }
 
 a.active:after {
-  background-color: #4883ff;
+  background-color: #ffcc00;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
@@ -825,7 +825,7 @@ section.pricing-tables .table-item {
 }
 
 section.pricing-tables .table-item .top-content {
-  background-color: #4883ff;
+  background-color: #ffcc00;
   padding: 30px;
   color: #fff;
   border-top-right-radius: 10px;
@@ -865,7 +865,7 @@ section.pricing-tables .table-item ul li a {
 }
 
 section.pricing-tables .table-item ul li a:hover {
-  color: #4883ff;
+  color: #ffcc00;
 }
 
 section.contact .section-heading {
@@ -880,18 +880,18 @@ section.contact .section-heading {
 /* Modal button */
 .modal-btn {
   display: inline-block;
-  background-color: #4883ff;
+  background-color: #ffcc00;
   color: #fff;
   font-size: 15px;
   font-weight: 500;
   padding: 10px 16px;
   text-decoration: none;
-  border: 2px solid #4883ff;
+  border: 2px solid #ffcc00;
   transition: all 0.5s;
 }
 .modal-btn:hover {
   background-color: transparent;
-  color: #4883ff;
+  color: #ffcc00;
 }
 
 /* Modal */
@@ -957,24 +957,24 @@ section.contact .section-heading {
 
 .modal-content .left-content button {
   display: inline-block;
-  background-color: #4883ff;
+  background-color: #ffcc00;
   color: #fff;
   font-size: 15px;
   font-weight: 500;
   padding: 10px 16px;
   text-decoration: none;
   border-radius: 0px;
-  border: 2px solid #4883ff;
+  border: 2px solid #ffcc00;
   transition: all 0.5s;
 }
 
 .modal-content .left-content button:hover {
   background-color: transparent;
-  color: #4883ff;
+  color: #ffcc00;
 }
 
 .modal-content .right-content {
-  background-color: #4883ff;
+  background-color: #ffcc00;
   padding: 30px 30px 65px 30px;
   color: #fff;
 }
@@ -1039,14 +1039,14 @@ section.contact .section-heading {
   text-align: center;
   line-height: 60px;
   background-color: #fff;
-  color: #4883ff;
+  color: #ffcc00;
   border-radius: 50%;
   opacity: 1;
 }
 
 .modal-content .close:hover {
   background-color: #fff;
-  color: #4883ff;
+  color: #ffcc00;
 }
 
 /* Keyframes */
@@ -1112,7 +1112,7 @@ footer .about-veno p {
 }
 
 footer .about-veno ul li a:hover {
-  background-color: #4883ff;
+  background-color: #ffcc00;
 }
 
 footer .useful-links ul li {
@@ -1128,11 +1128,11 @@ footer .useful-links ul li a {
 }
 
 footer .useful-links ul li a:hover {
-  color: #4883ff;
+  color: #ffcc00;
 }
 
 footer .useful-links ul li i {
-  color: #4883ff;
+  color: #ffcc00;
   font-size: 6px;
   position: relative;
   top: -3px;
@@ -1158,7 +1158,7 @@ footer .contact-info ul li span {
 
 footer .contact-info ul li a {
   font-size: 13px;
-  color: #4883ff;
+  color: #ffcc00;
   letter-spacing: 0.5px;
   text-decoration: none;
 }
@@ -1176,7 +1176,7 @@ footer .contact-info ul li a {
 
 .sub-footer a {
   text-decoration: none;
-  color: #4883ff;
+  color: #ffcc00;
 }
 
 
