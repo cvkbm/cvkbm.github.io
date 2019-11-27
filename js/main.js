@@ -1,325 +1,363 @@
-jQuery(document).ready(function($) {
 
-	'use strict';
+$(document).ready(function(){
+	"use strict";
 
-        $(function() {
+	var window_width 	 = $(window).width(),
+	window_height 		 = window.innerHeight,
+	header_height 		 = $(".default-header").height(),
+	header_height_static = $(".site-header.static").outerHeight(),
+	fitscreen 			 = window_height - header_height;
+
+
+	$(".fullscreen").css("height", window_height)
+	$(".fitscreen").css("height", fitscreen);
+
+     if(document.getElementById("default-select")){
+          $('select').niceSelect();
+    };
+     if(document.getElementById("service-select")){
+          $('select').niceSelect();
+    };    
+
+    $('.img-gal').magnificPopup({
+        type: 'image',
+        gallery:{
+        enabled:true
+        }
+    });
+
+
+    $('.play-btn').magnificPopup({
+        type: 'iframe',
+        mainClass: 'mfp-fade',
+        removalDelay: 160,
+        preloader: false,
+        fixedContentPos: false
+    });
+
+    
+  //  Counter Js 
+
+  $('.counter').counterUp({
+      delay: 10,
+      time: 1000
+  });
+
+
+  // Initiate superfish on nav menu
+  $('.nav-menu').superfish({
+    animation: {
+      opacity: 'show'
+    },
+    speed: 400
+  });
+
+  // Mobile Navigation
+  if ($('#nav-menu-container').length) {
+    var $mobile_nav = $('#nav-menu-container').clone().prop({
+      id: 'mobile-nav'
+    });
+    $mobile_nav.find('> ul').attr({
+      'class': '',
+      'id': ''
+    });
+    $('body').append($mobile_nav);
+    $('body').prepend('<button type="button" id="mobile-nav-toggle"><i class="lnr lnr-menu"></i></button>');
+    $('body').append('<div id="mobile-body-overly"></div>');
+    $('#mobile-nav').find('.menu-has-children').prepend('<i class="lnr lnr-chevron-down"></i>');
+
+    $(document).on('click', '.menu-has-children i', function(e) {
+      $(this).next().toggleClass('menu-item-active');
+      $(this).nextAll('ul').eq(0).slideToggle();
+      $(this).toggleClass("lnr-chevron-up lnr-chevron-down");
+    });
+
+    $(document).on('click', '#mobile-nav-toggle', function(e) {
+      $('body').toggleClass('mobile-nav-active');
+      $('#mobile-nav-toggle i').toggleClass('lnr-cross lnr-menu');
+      $('#mobile-body-overly').toggle();
+    });
+
+    $(document).click(function(e) {
+      var container = $("#mobile-nav, #mobile-nav-toggle");
+      if (!container.is(e.target) && container.has(e.target).length === 0) {
+        if ($('body').hasClass('mobile-nav-active')) {
+          $('body').removeClass('mobile-nav-active');
+          $('#mobile-nav-toggle i').toggleClass('lnr-cross lnr-menu');
+          $('#mobile-body-overly').fadeOut();
+        }
+      }
+    });
+  } else if ($("#mobile-nav, #mobile-nav-toggle").length) {
+    $("#mobile-nav, #mobile-nav-toggle").hide();
+  }
+
+  // Smooth scroll for the menu and links with .scrollto classes
+  $('.nav-menu a, #mobile-nav a, .scrollto').on('click', function() {
+    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      if (target.length) {
+        var top_space = 0;
+
+        if ($('#header').length) {
+          top_space = $('#header').outerHeight();
+
+          if( ! $('#header').hasClass('header-fixed') ) {
+            top_space = top_space;
+          }
+        }
+
+        $('html, body').animate({
+          scrollTop: target.offset().top - top_space
+        }, 1500, 'easeInOutExpo');
+
+        if ($(this).parents('.nav-menu').length) {
+          $('.nav-menu .menu-active').removeClass('menu-active');
+          $(this).closest('li').addClass('menu-active');
+        }
+
+        if ($('body').hasClass('mobile-nav-active')) {
+          $('body').removeClass('mobile-nav-active');
+          $('#mobile-nav-toggle i').toggleClass('lnr-times lnr-bars');
+          $('#mobile-body-overly').fadeOut();
+        }
+        return false;
+      }
+    }
+  });
+
+
+    $(document).ready(function() {
+
+    $('html, body').hide();
+
+        if (window.location.hash) {
+
+        setTimeout(function() {
+
+        $('html, body').scrollTop(0).show();
+
+        $('html, body').animate({
+
+        scrollTop: $(window.location.hash).offset().top-108
+
+        }, 1000)
+
+        }, 0);
+
+        }
+
+        else {
+
+        $('html, body').show();
+
+        }
+
+    });
   
-          // Vars
-          var modBtn  = $('#modBtn'),
-              modal   = $('#modal'),
-              close   = modal.find('.close'),
-              modContent = modal.find('.modal-content');
-          
-          // open modal when click on open modal button 
-          modBtn.on('click', function() {
-            modal.css('display', 'block');
-            modContent.removeClass('modal-animated-out').addClass('modal-animated-in');
-          });
-          
-          // close modal when click on close button or somewhere out the modal content 
-          $(document).on('click', function(e) {
-            var target = $(e.target);
-            if(target.is(modal) || target.is(close)) {
-              modContent.removeClass('modal-animated-in').addClass('modal-animated-out').delay(300).queue(function(next) {
-                modal.css('display', 'none');
-                next();
-              });
+
+  // Header scroll class
+  $(window).scroll(function() {
+    if ($(this).scrollTop() > 100) {
+      $('#header').addClass('header-scrolled');
+    } else {
+      $('#header').removeClass('header-scrolled');
+    }
+  });
+
+
+    $('.active-realated-carusel').owlCarousel({
+        items:1,
+        loop:true,
+        margin: 100,
+        dots: true,
+        nav:true,
+        navText: ["<span class='lnr lnr-arrow-up'></span>","<span class='lnr lnr-arrow-down'></span>"],                
+        autoplay:true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            480: {
+                items: 1,
+            },
+            768: {
+                items: 1,
             }
-          });
-          
-        });
-
-      (function($) {
-        $(".accordion > li:eq(0) a")
-          .addClass("active")
-          .next()
-          .slideDown();
-
-        $(".accordion a").click(function(j) {
-          var dropDown = $(this)
-            .closest("li")
-            .find("p");
-
-          $(this)
-            .closest(".accordion")
-            .find("p")
-            .not(dropDown)
-            .slideUp();
-
-          if ($(this).hasClass("active")) {
-            $(this).removeClass("active");
-          } else {
-            $(this)
-              .closest(".accordion")
-              .find("a.active")
-              .removeClass("active");
-            $(this).addClass("active");
-          }
-
-          dropDown.stop(false, true).slideToggle();
-
-          j.preventDefault();
-        });
-      })(jQuery);
-
-
-      $('.owl-carousel').owlCarousel({
-          loop:true,
-          margin:30,
-          responsiveClass:true,
-          responsive:{
-              0:{
-                  items:1,
-                  nav:true
-              },
-              500:{
-                  items:2,
-                  nav:false
-              },
-              800:{
-                  items:3,
-                  nav:false
-              },
-              1000:{
-                  items:4,
-                  nav:true,
-                  loop:false
-              }
-          }
-      })
-
-      
-      $('#form-submit .date').datepicker({
-      });
-
-      /**
-     * jquery.responsive-menu.js
-     * jQuery + CSS Multi Level Responsive Menu
-     */
-
-    jQuery(function($) {
-      $.fn.responsivenav = function(args) {
-        // Default settings
-        var defaults = {
-          responsive: true,
-          width: 993,                           // Responsive width
-          button: $(this).attr('id')+'-button', // Menu button id
-          animation: {                          // Menu animation
-          effect: 'slide',                    // Accepts 'slide' or 'fade'
-          show: 150,
-          hide: 100
-          },
-          selected: 'selected',                 // Selected class
-          arrow: 'downarrow'                    // Dropdown arrow class
-        };
-        var settings = $.extend(defaults, args);
-        
-        // Initialize the menu and the button
-        init($(this).attr('id'), settings.button);
-        
-        function init(menuid, buttonid) {
-          setupMenu(menuid, buttonid);
-          // Add a handler function for the resize and orientationchange event
-          $(window).bind('resize orientationchange', function(){ resizeMenu(menuid, buttonid); });
-          // Trigger initial resize
-          resizeMenu(menuid, buttonid);
         }
-        
-        function setupMenu(menuid, buttonid) {
-          var $mainmenu = $('#'+menuid+'>ul');
-          
-          var $headers = $mainmenu.find("ul").parent();
-          // Add dropdown arrows
-          $headers.each(function(i) {
-            var $curobj = $(this);
-            $curobj.children('a:eq(0)').append('<span class="'+settings.arrow+'"></span>');
-          });
-          
-          if ( settings.responsive ) {
-            // Menu button click event
-            // Displays top-level menu items
-            $('#'+buttonid).click(function(e) {
-              e.preventDefault();
-              
-              if ( isSelected($('#'+buttonid)) ) {
-                // Close menu
-                collapseChildren('#'+menuid);
-                animateHide($('#'+menuid), $('#'+buttonid));
-              } else {
-                // Open menu
-                animateShow($('#'+menuid), $('#'+buttonid));
-              }
-            });
-          }
-        }
-        
-        function resizeMenu(menuid, buttonid) {
-          var $ww = document.body.clientWidth;
-          
-          // Add mobile class to elements for CSS use
-          // instead of relying on media-query support
-          if ( $ww > settings.width || !settings.responsive) {
-            $('#'+menuid).removeClass('mobile');
-            $('#'+buttonid).removeClass('mobile');
-          } else {
-            $('#'+menuid).addClass('mobile');
-            $('#'+buttonid).addClass('mobile');
-          }
-          
-          var $headers = $('#'+menuid+'>ul').find('ul').parent();
-          
-          $headers.each(function(i) {
-            var $curobj = $(this);
-            var $link = $curobj.children('a:eq(0)');
-            var $subul = $curobj.find('ul:eq(0)');
-            
-            // Unbind events
-            $curobj.unbind('mouseenter mouseleave');
-            $link.unbind('click');
-            animateHide($curobj.children('ul:eq(0)'));
-            
-            if ( $ww > settings.width  || !settings.responsive ) {
-              // Full menu
-              $curobj.hover(function(e) {
-                var $targetul = $(this).children('ul:eq(0)');
-                
-                var $dims = { w: this.offsetWidth,
-                              h: this.offsetHeight,
-                              subulw: $subul.outerWidth(),
-                              subulh: $subul.outerHeight()
-                            };
-                var $istopheader = $curobj.parents('ul').length == 1 ? true : false;
-                $subul.css($istopheader ? {} : { top: 0 });
-                var $offsets = { left: $(this).offset().left, 
-                                 top: $(this).offset().top
-                               };
-                var $menuleft = $istopheader ? 0 : $dims.w;
-                $menuleft = ( $offsets.left + $menuleft + $dims.subulw > $(window).width() ) ? ( $istopheader ? -$dims.subulw + $dims.w : -$dims.w ) : $menuleft;
-                $targetul.css({ left:$menuleft+'px', 
-                               width:$dims.subulw+'px' 
-                              });
-                
-                animateShow($targetul);
-              },
-              function(e) {
-                var $targetul = $(this).children('ul:eq(0)');
-                animateHide($targetul);
-              });
-            } else {
-              // Compact menu
-              $link.click(function(e) {
-                e.preventDefault();
-
-                var $targetul = $curobj.children('ul:eq(0)');
-                if ( isSelected($curobj) ) {
-                  collapseChildren($targetul);
-                  animateHide($targetul);
-                } else {
-                  //collapseSiblings($curobj);
-                  animateShow($targetul);
-                }
-              });
-            }
-          });
-          
-          collapseChildren('#'+menuid);
-          
-          if ( settings.responsive && isSelected($('#'+buttonid)) ) {
-            //collapseChildren('#'+menuid);
-            $('#'+menuid).hide();
-            $('#'+menuid).removeAttr('style');
-            $('#'+buttonid).removeClass(settings.selected);
-          }
-        }
-        
-        function collapseChildren(elementid) {
-          // Closes all submenus of the specified element
-          var $headers = $(elementid).find('ul');
-          $headers.each(function(i) {
-            if ( isSelected($(this).parent()) ) {
-              animateHide($(this));
-            }
-          });
-        }
-        
-        function collapseSiblings(element) {
-          var $siblings = element.siblings('li');
-          $siblings.each(function(i) {
-            collapseChildren($(this));
-          });
-        }
-        
-        function isSelected(element) {
-          return element.hasClass(settings.selected);
-        }
-        
-        function animateShow(menu, button) {
-          if ( !button ) { var button = menu.parent(); }
-          
-          button.addClass(settings.selected);
-          
-          if ( settings.animation.effect == 'fade' ) {
-            menu.fadeIn(settings.animation.show);
-          } else if ( settings.animation.effect == 'slide' ) {
-            menu.slideDown(settings.animation.show);
-          } else {
-            menu.show();
-            menu.removeClass('hide');
-          }
-        }
-        
-        function animateHide(menu, button) {
-          if ( !button ) { var button = menu.parent(); }
-          
-          if ( settings.animation.effect == 'fade' ) {
-            menu.fadeOut(settings.animation.hide, function() { 
-              menu.removeAttr('style');
-              button.removeClass(settings.selected);
-            });
-          } else if ( settings.animation.effect == 'slide' ) {
-            menu.slideUp(settings.animation.hide, function() { 
-              menu.removeAttr('style');
-              button.removeClass(settings.selected);
-            });
-          } else {
-            menu.hide();
-            menu.addClass('hide');
-            menu.removeAttr('style');
-            button.removeClass(settings.selected);
-          }
-        }
-      };
     });
 
-    jQuery(function ($) {
-      $('#primary-nav').responsivenav();
-      $('#top-nav').responsivenav({responsive:false});
-    });
-	
-	// on click event on all anchors with a class of scrollTo
-        $('a.scrollTo').on('click', function(){
-          
-          // data-scrollTo = section scrolling to name
-          var scrollTo = $(this).attr('data-scrollTo');
-          
-          
-          // toggle active class on and off. added 1/24/17
-          $( "a.scrollTo" ).each(function() {
-            if(scrollTo == $(this).attr('data-scrollTo')){
-              $(this).addClass('active');
-            }else{
-              $(this).removeClass('active');
+
+    $('.active-about-carusel').owlCarousel({
+        items:1,
+        loop:true,
+        margin: 100,
+        nav:true,
+        navText: ["<span class='lnr lnr-arrow-up'></span>",
+        "<span class='lnr lnr-arrow-down'></span>"],
+        responsive: {
+            0: {
+                items: 1
+            },
+            480: {
+                items: 1,
+            },
+            768: {
+                items: 1,
             }
-          });
-          
-          
-          // animate and scroll to the sectin 
-          $('body, html').animate({
+        }
+    });
+
+
+    $('.active-review-carusel').owlCarousel({
+        items:1,
+        loop:true,
+        autoplay:true,
+        margin:30,
+        dots: true
+    });
+
+    $('.active-info-carusel').owlCarousel({
+        items:1,
+        loop:true,
+        margin: 100, 
+        dots: true,    
+        autoplay:true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            480: {
+                items: 1,
+            },
+            768: {
+                items: 1,
+            }
+        }
+    });
+
+
+    $('.active-testimonial').owlCarousel({
+        items:2,
+        loop:true,
+        margin: 30,
+        dots: true,
+        autoplay:true,
+        nav:true,
+        navText: ["<span class='lnr lnr-arrow-up'></span>","<span class='lnr lnr-arrow-down'></span>"],        
+        responsive: {
+            0: {
+                items: 1
+            },
+            480: {
+                items: 1,
+            },
+            768: {
+                items: 2,
+            }
+        }
+    });
+
+
+        $('.active-testimonials-slider').owlCarousel({
+        items:3,
+        loop:true,
+        margin: 30,
+        dots: true,
+        autoplay:true,    
+        responsive: {
+            0: {
+                items: 1
+            },
+            480: {
+                items: 1,
+            },
+            768: {
+                items: 2,
+            },
+            801: {
+                items: 3,
+            }            
+        }
+    });
+
+
+    $('.active-fixed-slider').owlCarousel({
+        items:3,
+        loop:true,
+        dots: true,
+        nav:true,
+        navText: ["<span class='lnr lnr-arrow-up'></span>",
+        "<span class='lnr lnr-arrow-down'></span>"],        
+            responsive: {
+            0: {
+                items: 1
+            },
+            480: {
+                items: 1,
+            },
+            768: {
+                items: 2,
+            },
+            900: {
+                items: 3,
+            }
+
+        }
+    });
+
+
+
+
+    //  Start Google map 
+
+            // When the window has finished loading create our google map below
+
+            if(document.getElementById("map")){
             
-            // the magic - scroll to section
-            "scrollTop": $('#'+scrollTo).offset().top
-          }, 1000 );
-          return false;
-          
-        })
-});
+            google.maps.event.addDomListener(window, 'load', init);
+        
+            function init() {
+                // Basic options for a simple Google Map
+                // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+                var mapOptions = {
+                    // How zoomed in you want the map to start at (always required)
+                    zoom: 11,
+
+                    // The latitude and longitude to center the map (always required)
+                    center: new google.maps.LatLng(40.6700, -73.9400), // New York
+
+                    // How you would like to style the map. 
+                    // This is where you would paste any style found on Snazzy Maps.
+                    styles: [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#e9e9e9"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#ffffff"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":21}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}]
+                };
+
+                // Get the HTML DOM element that will contain your map 
+                // We are using a div with id="map" seen below in the <body>
+                var mapElement = document.getElementById('map');
+
+                // Create the Google Map using our element and options defined above
+                var map = new google.maps.Map(mapElement, mapOptions);
+
+                // Let's also add a marker while we're at it
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(40.6700, -73.9400),
+                    map: map,
+                    title: 'Snazzy!'
+                });
+            }
+    }
+
+
+        $(document).ready(function() {
+            $('#mc_embed_signup').find('form').ajaxChimp();
+        });      
+
+
+
+
+
+
+
+
+ });
