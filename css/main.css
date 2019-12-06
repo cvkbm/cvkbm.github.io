@@ -2236,7 +2236,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .section-gap {
-  padding: 120px 0;
+  padding: 70px 0;
 }
 
 .section-title {
@@ -3531,6 +3531,12 @@ body.mobile-nav-active #mobile-nav-toggle {
 .commentform-area .form-control {
   border: none;
   background: #f9f9ff;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+.section-gap-service {
+  padding: 50px 0;
 }
 
 /*
